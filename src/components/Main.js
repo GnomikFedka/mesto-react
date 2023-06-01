@@ -3,7 +3,6 @@ import Pen from '../images/pen.svg';
 import Plus from '../images/plus.svg';
 import React from 'react';
 import Card from './Card';
-let userId = null;
 const { useState, useEffect} = React;
 export default function Main(props) {
   const [userName, setUserName] = useState("");
@@ -17,7 +16,6 @@ export default function Main(props) {
       api.apiGetCardsJson()
     ])
     .then(([userData, cardsData]) => {
-      userId = userData._id;
       setUserName(userData.name);
       setUserDescription(userData.about);
       setUserAvatar(userData.avatar);
@@ -53,8 +51,7 @@ export default function Main(props) {
           <Card 
           card={card}
           key={card._id}
-          onOpenCard={props.onOpenCard}
-          idOfUser={userId} />
+          onOpenCard={props.onOpenCard} />
         ))}
       </section>
     </main>
