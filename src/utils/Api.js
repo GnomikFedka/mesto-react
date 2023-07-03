@@ -71,21 +71,10 @@ class Api {
       })
     }
 
-    apiAddLikeJson(card) {
-      return fetch(`https://mesto.nomoreparties.co/v1/cohort-63/cards/${card._cardData._id}/likes`, {
-        method: 'PUT',
+    changeLikeCardStatus(cardId, isLiked) {
+      return fetch(`https://mesto.nomoreparties.co/v1/cohort-63/cards/${cardId}/likes`, {
+        method: isLiked ? "DELETE" : "PUT",
         headers: this._headers,
-        body: JSON.stringify()
-      })
-      .then(res => {
-        return this._getResponseData(res);
-      })
-    }
-
-    apiRemoveLikeJson(card) {
-      return fetch(`https://mesto.nomoreparties.co/v1/cohort-63/cards/${card._cardData._id}/likes`, {
-        method: 'DELETE',
-        headers: this._headers
       })
       .then(res => {
         return this._getResponseData(res);
