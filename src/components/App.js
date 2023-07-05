@@ -21,7 +21,7 @@ function  App()  {
   const [cards, setCards] = useState([]);
 
   React.useEffect(() => {
-    Promise.all([api.apiGetUserJson(), api.apiGetCardsJson()])
+    Promise.all([api.getUser(), api.getCards()])
       .then(([userData, cards]) => {
         setCurrentUser(userData);
         setCards(cards);
@@ -79,7 +79,7 @@ function  App()  {
   }
 
   function handleUpdateAvatar({ avatar }) {
-    api.patchAvatar({ avatar })
+    api.setAvatar({ avatar })
       .then((userData) => {
         setCurrentUser(userData);
         closeAllPopups();
@@ -90,7 +90,7 @@ function  App()  {
   }
 
   function handleAddPlaceSubmit({ name, link }) {
-    api.postCard({ name, link })
+    api.addCard({ name, link })
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
@@ -101,7 +101,7 @@ function  App()  {
   }
 
   function handleUpdateUser({ name, about }) {
-    api.patchUserInfo({ name, about })
+    api.setUser({ name, about })
       .then((userData) => {
         setCurrentUser(userData);
         closeAllPopups();
@@ -150,9 +150,6 @@ function  App()  {
         />
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
-        <PopupWithForm  name="delete" title="Вы уверены?" buttonText="Да">
-            <h3  className="popup__title">Вы  уверены?</h3>
-        </ PopupWithForm>
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       </div>
     </div>
