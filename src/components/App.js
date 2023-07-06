@@ -149,8 +149,6 @@ function  App()  {
           onClose={closeAllPopups}
         />
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
-        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       </div>
     </div>
     </CurrentUserContext.Provider>
