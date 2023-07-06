@@ -1,5 +1,5 @@
 class Api {
-    constructor(headers, myUrl) {
+    constructor({headers, myUrl}) {
         this._headers = headers;
         this._myUrl = myUrl;
     }
@@ -29,11 +29,14 @@ class Api {
       })
     }
 
-    setUser(user) {
+    setUser({name, about}) {
       return fetch(`${this._myUrl}/users/me`, {
         method: 'PATCH',
         headers: this._headers,
-        body: JSON.stringify(user)
+        body: JSON.stringify({
+          name,
+          about,
+        }),
       })
       .then(res => {
         return this._getResponseData(res);
@@ -62,8 +65,8 @@ class Api {
         })  
     }
 
-    deleteCard(card, cardData) {
-      return fetch(`${this._myUrl}/cards/${cardData._id}`, {
+    deleteCard(cardData) {
+      return fetch(`${this._myUrl}/cards/${cardData}`, {
         method: 'DELETE',
         headers: this._headers
       })
@@ -85,7 +88,7 @@ class Api {
 const api = new Api({
   headers: {
     authorization: '9747cacb-cd33-472a-8f54-1926cc52a8f6',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   },
   myUrl: 'https://mesto.nomoreparties.co/v1/cohort-63',
 });

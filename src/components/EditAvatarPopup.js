@@ -1,6 +1,5 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
-const { useState } = React;
 
 function EditAvatarPopup(props) {
   const inputRef = React.useRef();
